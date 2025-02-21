@@ -23,24 +23,23 @@
     // Print message declaring round winner and current running scores
     // Go back to line 3
 
+  
+
+function getComputerChoice() {              //returns rock, paper, or scissors
+    let choice = ((Math.random() *9) + 1);  //all #s 1-9.9999999
+    if (choice < 4) {                       //between 1 and 4
+        return ("rock");
+    } else if (choice > 7) {                //between 7 and 10
+        return ("scissors");
+    } else return ("paper");                //between 4 and 7
+}
+
+const computerChoice = getComputerChoice();
+console.log(computerChoice); 
+
     
-
-    function getComputerChoice() {
-        let choice = ((Math.floor(Math.random() * 10) + 1)); //integer 1-10
-        console.log(choice);
-        if (choice == 10) {
-            console.log("error");
-        } else if (choice <= 3) {
-            console.log("rock");
-        } else if (choice >= 7) {
-            console.log("scissors");
-        } else console.log("paper");
-    } 
-
-    const computerChoice = getComputerChoice();
-
-
-    console.log(computerChoice);             
+    
+    
 
 
 
