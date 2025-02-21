@@ -23,7 +23,24 @@
     // Print message declaring round winner and current running scores
     // Go back to line 3
 
+    
 
+    function getComputerChoice() {
+        let choice = ((Math.floor(Math.random() * 10) + 1)); //integer 1-10
+        console.log(choice);
+        if (choice == 10) {
+            console.log("error");
+        } else if (choice <= 3) {
+            console.log("rock");
+        } else if (choice >= 7) {
+            console.log("scissors");
+        } else console.log("paper");
+    } 
+
+    const computerChoice = getComputerChoice();
+
+
+    console.log(computerChoice);             
 
 
 
