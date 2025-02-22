@@ -23,11 +23,48 @@
     // Print message declaring round winner and current running scores
     // Go back to line 3                            
 
+
+
+
   
+// function playGame {
+//     runs playRound function
+//     contains or refers to running score function
+//     when total of scores = 5, game over
+//     executes end-of-game stuff
+// }
 
 
 
+let humanScore = 0;
+let computerScore = 0;
+    
+const computerChoice = getComputerChoice();  //value is rock, paper, or scissors
+// console.log(computerChoice.toUpperCase())
+const humanChoice = getHumanChoice();        //value is rock, paper, or scissors
+// console.log(humanChoice);
+const roundWinner = findRoundWinner();   //value is human, computer, or tie
+// console.log(roundWinner);  
+// const runningScore = updateScore();  
 
+console.log("Welcome to Rock, Paper, Scissors")
+
+playGame(); 
+ 
+function playGame() {
+    console.log("Enter rock, paper, or scissors.");
+    getComputerChoice();
+    getHumanChoice();
+    findRoundWinner(); 
+    tallyScore(); 
+    let totalScore = (humanScore + computerScore);
+    if (totalScore === 5) {
+        gameOver;
+    } else {
+        console.log("The current score is " + humanScore, computerScore);
+        playGame;
+    }  
+}
 
 function getComputerChoice() {               //returns rock, paper, or scissors
     let choice = ((Math.random() * 9) + 1);  //all #s 1-9.9999999
@@ -36,28 +73,20 @@ function getComputerChoice() {               //returns rock, paper, or scissors
     } else if (choice > 7) {                 //between 7 and basically-10
         return ("scissors");
     } else return ("paper");                 //between 4 and 7
-}
-
-const computerChoice = getComputerChoice();  //value is rock, paper, or scissors
-// console.log(computerChoice.toUpperCase())
-
+}  
     
 function getHumanChoice() {                  //stand-in for humanChoice while I figure out prompt
     let choice = ((Math.random() * 9) + 1); 
     if (choice < 4) {                       
-        return ("rock");
-    } else if (choice > 7) {                
         return ("scissors");
-    } else return ("paper"); 
+    } else if (choice > 7) {                
+        return ("paper");
+    } else return ("rock"); 
 } 
-    
-const humanChoice = getHumanChoice();        //value is rock, paper, or scissors
-// console.log(humanChoice);
 
-
-// ALTERNATIVE findRoundWinner() idea with 7 different message possibilities:
+// ALTERNATIVE playRound() idea with 7 different message possibilities:
 // 
-// function findRoundWinner() {  //returns winner: human or computer or nobody
+// function playRound() {  //returns winner: human or computer or nobody
 //     console.log(humanChoice);
 //     console.log(computerChoice.toUpperCase()); 
 //     if ((humanChoice === "rock") && (computerChoice === "scissors")) {
@@ -75,29 +104,64 @@ const humanChoice = getHumanChoice();        //value is rock, paper, or scissors
 //     } else console.log("IT'S A TIE!!!"); return "nobody"
 // }
 
-
-
 function findRoundWinner() {              //returns human, computer, or tie
     console.log("The human has chosen " + humanChoice + ".");
     console.log("The computer has chosen " + computerChoice + ".");
     if (((humanChoice === "rock") && (computerChoice === "scissors")) || 
         ((humanChoice === "scissors") && (computerChoice === "paper")) ||
         ((humanChoice === "paper") && (computerChoice === "rock"))) {
-            console.log("The human is victorious."); 
-            return "human";  //add score announcement
-        } if (humanChoice === computerChoice) {
+            // humanScore++;                        
+            console.log("The human is victorious and has gained one point.");           
+            // getComputerChoice;
+            // return "human";
+            return humanScore++, computerScore;
+        } else if (humanChoice === computerChoice) {
             console.log("It's a tie!");
-            return "tie";
+            // return "tie";
+            // getComputerChoice; 
+            return humanScore, computerScore;  
         } else {
+            // return "computer";
+            // computerScore++;    
             console.log("The computer triumphs!!");
-            return "computer";  //add score announcement
+            // console.log("Computer has " + computerScore + " points.")
+            // getComputerChoice;  //add score announcement  
+            return humanScore, computerScore++;         
         }     
+}  
+
+function tallyScore(humanScore, computerScore) {
+    return (humanScore, computerScore);
 }
 
-const roundWinner = findRoundWinner();   //value is human, computer, or tie
-// console.log(roundWinner);
+function gameOver(humanScore, computerScore) {
+   let humanWins = (humanScore > computerScore);
+   if (humanWins === true) {
+    console.log("The lucky human has won with " + humanScore + " points.")
+    console.log("Let's play again!")
+   } else {
+    console.log("Alas, the computer prevails. The human loses " + humanScore + " to " + computerScore + ".")
+   }
+}
+  
 
+// console.log(humanScore) 
+                                                   
 
+// function updateScore() {   //adds 0 or 1 to humanScore, computerScore
+//     if (roundWinner === "human") {
+//         humanScore++;
+//         console.log("human wins and has " + humanScore);    
+//         return humanScore;  
+//     } else if (roundWinner === "computer") {
+//         computerScore++;
+//         console.log("computer wins and has " + computerScore);
+//         return computerScore;
+//     } else {
+//         console.log("it's a tie")
+//         totalScore;   
+//     }          
+// }  
 
 
 // next up: how to keep and update score
@@ -123,14 +187,4 @@ const roundWinner = findRoundWinner();   //value is human, computer, or tie
 //     starts at zero
 //     adds 1 if computer wins round
 // }
-
-// function playGame {
-//     runs playRound function
-//     contains or refers to running score function
-//     when total of scores = 5, game over
-//     executes end-of-game stuff
-// }
-
-
-
 
