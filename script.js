@@ -82,20 +82,27 @@ function getComputerChoice() { //too wordy? streamline?
 }  
         
 function getHumanChoice() {  //fix this mess!        
-    let choice = prompt("Please enter rock, paper, or scissors.").toLowerCase();   
-    // if (humanChoice === "paper") {
+    let choice = prompt("Please enter rock, paper, or scissors.").toLowerCase(); 
+     
+    if (choice === "paper") {
     // // ((humanChoice === "paper") || (humanChoice === "rock") || (humanChoice === "scissors")) {
-    //     return humanChoice;
-    // } else if (humanChoice === "rock") {
-    //     return humanChoice;
-    // } else if (humanChoice === "scissors") {
-    //     return humanChoice;f
-    // } else {
-        console.log("I'm sorry, that is not on the list of approved items"); 
+        humanChoice = ("paper");
+        return humanChoice;
+    } else if (choice === "rock") {
+        humanChoice = ("rock");
+        return humanChoice;
+    } else if (choice === "scissors") {
+        humanChoice = ("scissors");
+        return humanChoice;
+    } else {
+        console.log("I'm sorry, " + (choice) + " is an unknown object."); 
+        return humanChoice;
+        // humanChoice = (choice);
+        // humanChoice = getHumanChoice;
         // return ("paper");
-        humanChoice = choice 
-        return humanChoice;  
-    // }  
+        // humanChoice = choice 
+        // return humanChoice;  
+    }  
 }    
  
 function findRoundWinner() { //merge this with getHuman/ComputerScore???
