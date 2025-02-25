@@ -25,13 +25,6 @@
 //*******************************************************************//
 
 
-//Remaining to-do as of this commit:
-
-//Fix getHumanChoice
-//Test code streamlining possibilities commented next to various functions
-
-
-
 let humanScore = 0;
 let computerScore = 0;
 
@@ -81,33 +74,36 @@ function getComputerChoice() { //too wordy? streamline?
     }              
 }  
         
-function getHumanChoice() {  //fix this mess!        
-    let choice = prompt("Please enter rock, paper, or scissors.").toLowerCase(); 
+function getHumanChoice() {  //streamline back to OR statement? it should work now...        
+    console.log("hello");
+    let choice = prompt("Please enter rock, paper, or scissors.");
+        
      
-    if (choice === "paper") {
+    if (choice === null) {  //this part actually works for cancellation
+        console.log("The human has conceded the game. The computer wins!");
+        playGame();
+    }
+
+    choice.toLowerCase();
+    
+    if (choice.toLowerCase() === "rock") {
     // // ((humanChoice === "paper") || (humanChoice === "rock") || (humanChoice === "scissors")) {
-        humanChoice = ("paper");
-        return humanChoice;
-    } else if (choice === "rock") {
         humanChoice = ("rock");
         return humanChoice;
-    } else if (choice === "scissors") {
+    } else if (choice.toLowerCase() === "paper") {
+        humanChoice = ("paper");
+        return humanChoice;
+    } else if (choice.toLowerCase() === "scissors") {
         humanChoice = ("scissors");
         return humanChoice;
     } else {
-        console.log("I'm sorry, " + (choice) + " is an unknown object."); 
-        return humanChoice;
-        // humanChoice = (choice);
-        // humanChoice = getHumanChoice;
-        // return ("paper");
-        // humanChoice = choice 
-        // return humanChoice;  
-    }  
+        console.log("I'm sorry, " + choice + " is an unauthorized object.");   
+    } 
+    getHumanChoice(); //remember to put parentheses after functions!!! 
 }    
  
 function findRoundWinner() { //merge this with getHuman/ComputerScore???
     console.log("The human has chosen " + humanChoice + ".");
-    console.log("what about the computer");
     console.log("The computer has chosen " + computerChoice + "."); 
     if (((humanChoice === "rock") && (computerChoice === "scissors")) || 
         ((humanChoice === "scissors") && (computerChoice === "paper")) ||
@@ -134,19 +130,13 @@ function findRoundWinner() { //merge this with getHuman/ComputerScore???
        
 function getHumanScore() {  
     if (roundWinner === "human") {
-        console.log(humanScore);
-        console.log("human is roundwinner");
         humanScore++;
-        console.log(humanScore)
     } return humanScore;   
 }
 
 function getComputerScore() {
     if (roundWinner === "computer") {
-        console.log(computerScore); //undefined
-        console.log("computer is roundwinner");
         computerScore++;
-        console.log(computerScore) //NaN
     } return computerScore;
 }
 
@@ -165,7 +155,7 @@ function gameOver() {
 }
 
 
-// ALTERNATIVE playRound() idea with 7 different message possibilities:
+// ALTERNATIVE playRound() idea with more specific commentary:
 // 
 // function playRound() {  //returns winner: human or computer or nobody
 //     console.log(humanChoice);
