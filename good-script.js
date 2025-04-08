@@ -1,29 +1,30 @@
-let roundCount = 0
 let humanScore = 0
 let computerScore = 0
+
+const choiceDiv = document.getElementById("choiceDiv");
+const scoreDiv = document.getElementById("scoreDiv");
+const pleaseSelect = document.querySelector("h3");
+
+choiceDiv.style.visibility = "hidden";
+scoreDiv.style.visibility = "hidden";
 
 playGame();
 
 function playGame() {
-    console.log("Welcome to a new game of Rock, Paper, Scissors!")
-    console.log("This game will continue for 5 rounds.")
+// ("Welcome to a new game of Rock, Paper, Scissors!")
 
-    while (roundCount < 5) { 
+    while (humanScore + computerScore < 5) { 
         const computerSelection = getComputerChoice();
         const humanSelection = getHumanChoice();
-        getRoundWinner(humanSelection, computerSelection);
-        roundCount++
-        console.log("Round " + roundCount + " concludes. Score is Human: " 
-            + humanScore + ", Computer: " + computerScore + ".");
+        displayChoices(humanSelection, computerSelection);
+        playRound(humanSelection, computerSelection);
+        moveOn();
     }
     endGame();
 }
 
 function getComputerChoice() {  
     let choice = (Math.random() * 3);
-    // is it bad form to do this math the simplest way that it works?
-    // aka why are other people changing this to produce integers?
-    console.log("The computer has made a choice and awaits the human's decision.");
 
     if (choice < 1) {
         return "rock";
@@ -34,56 +35,91 @@ function getComputerChoice() {
     }            
 }  
 
-function getHumanChoice() {      
-    let input = prompt("Please enter rock, paper, or scissors.");
+function getHumanChoice() {  
+    const rockButton = document.getElementById("rockButton");
+    const paperButton = document.getElementById("paperButton");
+    const scissorsButton = document.getElementById("scissorsButton");
 
-    if (input === null) {
-        endGame();
-    }
-    return input.toLowerCase(); 
+    rockButton.addEventListener('click', function (e) {
+        return "rock";
+    });
+    paperButton.addEventListener('click', function (e) {
+        return "paper";
+    });
+    scissorsButton.addEventListener('click', function (e) {
+        return "scissors";
+    });
 }  
 
-function getRoundWinner(humanChoice, computerChoice) { 
-    while (((humanChoice !== "rock")) && 
-           ((humanChoice !== "paper")) && 
-           ((humanChoice !== "scissors"))) {
-            console.log("I'm sorry, " + humanChoice + " is an unauthorized object.");
-            humanChoice = getHumanChoice();
-           }
+function displayChoices(humanChoice, computerChoice) {
+    pleaseSelect.style.visibility = "hidden";
 
-    console.log("The human has chosen " + humanChoice + ".");
-    console.log("The computer has chosen " + computerChoice + "."); 
+    const humanObject = document.getElementById("humanObject");
+    const computerObject = document.getElementById("computerObject");
+    humanObject.textContent = humanChoice;
+    computerObject.textContent = computerChoice;
+    choiceDiv.style.visibility = "visible";
+}
+
+function playRound(humanChoice, computerChoice) { 
+    scoreDiv.style.visibility = "visible";
+
+    const roundWinner = document.getElementById("roundWinner");
 
     if (((humanChoice === "rock") && (computerChoice === "scissors")) || 
         ((humanChoice === "scissors") && (computerChoice === "paper")) ||
         ((humanChoice === "paper") && (computerChoice === "rock"))) {
-            console.log("The human is victorious."); 
-            return humanScore++;
+            roundWinner.textContent = "the human is victorious.";
+            humanScore++;
+            const humanScoreDisplay = document.getElementById("humanScoreDisplay");
+            humanScoreDisplay.textContent = humanScore;
+            return humanScore;
         } else if (humanChoice === computerChoice) { 
-            console.log("It's a tie!"); 
+            roundWinner.textContent = "it's a tie!" 
         } else {
-            console.log("The computer triumphs!!"); 
-            return computerScore++; 
+            roundWinner.textContent = "the computer wins this round." 
+            computerScore++;
+            const computerScoreDisplay = document.getElementById("computerScoreDisplay");
+            computerScoreDisplay.textContent = computerScore;
+            return computerScore; 
         }     
-}  
+} 
+
+function moveOn() {
+    // put something here to pause for like 2 seconds, maybe fade out stuff?
+    choiceDiv.style.visibility = "hidden";
+    const roundWinner = document.getElementById("roundWinner");
+    roundWinner.textContent = "";
+    // do something to prompt for next round
+    pleaseSelect.style.visibility = "visible";
+}
 
 function endGame() { 
-    if (roundCount < 5) {
-        console.log("The human has conceded the game. The computer wins by default!");
-    } else if (humanScore > computerScore) {
-        console.log("The lucky human has won the game.")
-    } else if (humanScore === computerScore){
-        console.log("There is no winner this time.")
+    const gameOverDiv = document.createElement("div");
+    const gameOver = document.createElement("h1");
+    const gameWinner = document.createElement("h3");
+    const playAgainButton = document.createElement("button");
+    
+    gameOver.textContent = "GAME OVER";
+    playAgainButton.textContent = "PLAY AGAIN";
+
+    if (humanScore > computerScore) {
+        gameWinner.textContent = "The lucky human has won the game.";
     } else {
-        console.log("Alas, the computer prevails. The human loses by " 
-            + (computerScore - humanScore) + ".");
+        gameWinner.textContent = "Alas, the computer prevails. The human loses by " 
+            + (computerScore - humanScore) + ".";
     }
     
-    console.log("Let's play again!");
-    console.log(" ")
-    humanScore = 0;
-    computerScore = 0;
-    roundCount = 0;
-    playGame();
+    gameOverDiv.classList.add("gameOverDiv")
+    const header = document.querySelector("h1");
+    header.appendChild(gameOverDiv);
+    gameOverDiv.append(gameOver, gameWinner, playAgainButton);
+    
+    playAgainButton.addEventListener('click', function (e) {
+        humanScore = 0;
+        computerScore = 0;
+        playGame();
+    });
+
 }
 
