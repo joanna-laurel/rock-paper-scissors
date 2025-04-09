@@ -4,33 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock, Paper, Scissors</title>
-    <!-- <script src="good-script.js"></script> -->
+    <link rel="stylesheet" href="styles.css">
+    <script src="good-script.js" defer></script>
 </head>
 <body>
 
-    <h1>rock. paper. scissors.</h1>
+    <h2>(O) [_] >8</h2>
+    <!-- &#x1FAA8 &#x1F4C3 &#x2702  -->
+    <p id="roundWinner">welcome to a new game of rock, paper, scissors.</p> 
+    <p class="smallText">the first player to reach 5 points wins.</p>
     <h3>please select an object:</h3>
-    <button id = rockButton>ROCK</button>
-    <button id = paperButton>PAPER</button>
-    <button id = scissorsButton>SCISSORS</button>
-    <div id = choiceDiv>
-        <div id = humanChoiceDiv></div>
+    <div id="buttonDiv">
+        <button id="rockButton">ROCK</button>
+        <button id="paperButton">PAPER</button>
+        <button id="scissorsButton">SCISSORS</button>
+    </div>  
+    <div id="choiceDiv">
+        <div id="humanChoiceDiv">
             <p>the human's choice:</p>
-            <div id="humanChoice"></div>
-        <div id = computerChoiceDiv></div>
+            <div id="humanObject">???</div>
+        </div>
+        <div id="computerChoiceDiv">
             <p>the computer's choice:</p>
-            <div id="computerChoice"></div>
+            <div id="computerObject">???</div>
+        </div>
     </div>
-    <p id = roundWinner></p>
-    <h3>current score</h3>
-    <div id = scoreDiv></div>
-        <p>human:</p>
-        <div id = humanScore></div>
-        <p>computer:</p>
-        <div id = computerScore></div>
-    <div id = gameOverDiv></div>
-        <p>GAME OVER</p>
-        <p id = gameWinner></P>
+    <div id="scoreDiv">
+        <h3>current score</h3>
+        <div id="innerScoreDiv">
+            <p>human:</p>
+            <p id="humanScoreDisplay">0</p>
+            <p>computer:</p>
+            <p id="computerScoreDisplay">0</p>
+        </div>
+    </div>
+    <div id="tableDiv">
+        <p class="smallText">round history:</p>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>human</th>
+                <th>computer</th>
+                <th>winner</th>
+            </tr>
+        </table>
+    </div>
 
 </body>
 </html>
