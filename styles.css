@@ -11,25 +11,60 @@ body {
 
 h1 {}
 
-h3 {}
+h3 {
+   
+}
 
 button {
-    margin: 10px;
+    margin: 20px 10px;
+    padding: 5px 20px;
     background-color: rgb(114, 160, 158);
+    color: white;
+    font-weight: bold;
 }
 
 button :hover {
     background-color: rgb(39, 95, 64);
 }
 
-p {}
+p {
+    margin-bottom: 30px;
+}
 
 div {
     display: flex;
     justify-content: center;
     align-items: center;
-    border: dashed turquoise 2pt;
 }
+
+table {
+    table-layout: fixed;
+    width: auto;
+    border-collapse: collapse;
+    border: 1px solid purple;
+}
+
+thead th:nth-child(1) {
+    width: 4%
+}
+
+thead th:nth-child(2) {
+    width: 32%
+}
+
+thead th:nth-child() {
+    width: 32%
+}
+
+thead th:nth-child() {
+    width: 32%
+}
+
+td, th {
+    text-align: left;
+    padding: 0px 10px;
+}
+
 
 
 /*IDs in order they appear in html*/
@@ -49,18 +84,36 @@ div {
 
 #scoreDiv {
     flex-direction: column;
+    align-items: center;
+    background-color: rgb(114, 160, 158);
 }
 
 #innerScoreDiv {
-    margin-top: -20px;
+    
 }
 
 #humanScoreDisplay {
     margin-right: 20px;
 }
 
+#tableDiv {
+    flex-direction: column;
+}
+
 
 /*classes*/
+
+.smallText {
+    font-size: small;
+    color: orangered;
+    margin: 20px 0px;
+}
+
+.objectRevealed {
+    color: orangered;
+    font-weight: bold;
+    font-size: large;
+}
 
 .gameOverDiv {
     flex-direction: column;
