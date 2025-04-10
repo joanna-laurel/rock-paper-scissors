@@ -50,10 +50,13 @@ function getComputerChoice() {
 
 function displayChoices(humanChoice, computerChoice) {
     pleaseSelect.textContent = "OBJECTS WERE SELECTED";
-    humanObject.textContent = humanChoice;
-    computerObject.textContent = computerChoice;
+    const displayHumanObject = humanObject.textContent = humanChoice;
+    const displayComputerObject = computerObject.textContent = computerChoice;
     humanObject.classList.add("objectRevealed");
     computerObject.classList.add("objectRevealed");
+
+    setTimeout(displayHumanObject, 2000);
+    setTimeout(displayComputerObject, 2000);
 }
 
 function findRoundWinner(humanChoice, computerChoice) { 
@@ -95,7 +98,7 @@ function updateScore(thisRoundsWinner) {
 }
 
 function recordRoundHistory(theCount, humanChoice, computerChoice, thisRoundsWinner) {
-    let roundArray = [theCount, humanChoice, computerChoice, thisRoundsWinner]
+    let roundArray = [theCount, humanChoice, computerChoice, thisRoundsWinner];
     const tableRow = document.createElement("tr");
     table.appendChild(tableRow);
     console.log(roundArray);
@@ -104,7 +107,8 @@ function recordRoundHistory(theCount, humanChoice, computerChoice, thisRoundsWin
         const tableData = document.createElement("td");
         tableData.textContent = element; {
         tableRow.appendChild(tableData)
-    }});
+        }
+    });
     
 }
     
@@ -132,26 +136,34 @@ function endGame() {
     if (humanScore > computerScore) {
         gameWinner.textContent = "The lucky human has won the game.";
     } else {
-        gameWinner.textContent = "Alas, the computer prevails. The human loses by " 
+        gameWinner.textContent = "Alas, the computer prevails. \nThe human loses by " 
             + (computerScore - humanScore) + ".";
     }
     
-    gameOverDiv.classList.add("gameOverDiv")
-    const header = document.querySelector("h1");
-    header.appendChild(gameOverDiv);
+    gameOverDiv.classList.add("gameOverDiv");
+    // const header = document.querySelector("h2");
+    roundWinner.appendChild(gameOverDiv);
     gameOverDiv.append(gameOver, gameWinner, playAgainButton);
     
-    playAgainButton.addEventListener('click', resetEverything) 
+    playAgainButton.addEventListener("click", resetEverything);
         
     function resetEverything() {
         humanScore = 0;
         computerScore = 0;
+        const finalRoundCount = roundCount;
         roundCount = 0;
-        roundWinner.textContent = "welcome to a new game of rock, paper, scissors.";
-        header.removeChild(gameOverDiv);
-        pleaseSelect.textContent = "please select an object:"
-        playGame();
+        console.log(finalRoundCount);
+        humanScoreDisplay.textContent = "0";
+        computerScoreDisplay.textContent = "0";
+        roundWinner.textContent = "welcome to a new game!";
+        pleaseSelect.textContent = "please select an object:";
+
+        for (i = 0; i < finalRoundCount; i++) {
+            const table = document.querySelector("table");
+            table.removeChild(table.lastElementChild);
+        }
+        roundWinner.removeChild(gameOverDiv);
+        playGame();   
     }
-
 }
-
+   
