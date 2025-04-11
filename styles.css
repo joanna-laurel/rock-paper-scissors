@@ -9,55 +9,66 @@ body {
 
 /*elements*/
 
-h1 {}
+h1 {
+    color: orangered;
+    z-index: 10;
+}
+
+h2 {
+    margin-bottom: 10px;
+    /* border-bottom: solid 2px orangered; */
+}
 
 h3 {
    
 }
 
 button {
-    margin: 20px 10px;
+    margin: 10px 10px;
     padding: 5px 20px;
     background-color: rgb(114, 160, 158);
     color: white;
     font-weight: bold;
+    border: solid 1px rgb(24, 43, 42);
 }
 
-button :hover {
-    background-color: rgb(39, 95, 64);
+button:hover {
+    background-color: orangered;
 }
 
 p {
-    margin-bottom: 30px;
+    margin: 0;
 }
 
 div {
     display: flex;
     justify-content: center;
     align-items: center;
+    /* border: solid black 3px; */
 }
 
 table {
-    table-layout: fixed;
-    width: auto;
+    /* table-layout: fixed; */
+    width: 380px;
     border-collapse: collapse;
-    border: 1px solid purple;
+    /* border: 1px solid purple; */
+    margin-top: -10px;
 }
 
 thead th:nth-child(1) {
-    width: 4%
+    width: 20px;
 }
 
 thead th:nth-child(2) {
-    width: 32%
+    width: 120px;
 }
 
-thead th:nth-child() {
-    width: 32%
+thead th:nth-child(3) {
+    width: 120px;
 }
 
-thead th:nth-child() {
-    width: 32%
+thead th:nth-child(4) {
+    width: 120px;
 }
 
 td, th {
@@ -69,6 +80,11 @@ td, th {
 
 /*IDs in order they appear in html*/
 
+#roundWinner {
+   color: rgb(175, 175, 33);
+   font-style: bold;
+}
+
 #buttonDiv {
     background-color: rgb(175, 175, 33);
 }
@@ -79,21 +95,49 @@ td, th {
 
 #humanChoiceDiv, #computerChoiceDiv {
     flex-direction: column;
-    margin: 20px;
+    margin: 20px 10px;
+}
+
+#humanObject, #computerObject {
+    color: orangered;
+    font-weight: bold;
+    font-size: x-large;
 }
 
 #scoreDiv {
     flex-direction: column;
     align-items: center;
     background-color: rgb(114, 160, 158);
+    margin-bottom: 10px;
 }
 
 #innerScoreDiv {
+    margin: -10px 0px 20px 0px;
+}
+
+#humanScoreDiv, #computerScoreDiv {
+    align-items: baseline;
+}
+
+#humanScoreDiv {
+    margin-right: 25px;
+}
+
+#humanScoreDisplay, #computerScoreDisplay {
     
+    color: orangered;
+    font-style: bold;
+    font-size: large;
+    background-color: white;
+    padding: 6px 5px 2px 5px;
 }
 
 #humanScoreDisplay {
-    margin-right: 20px;
+    margin-left: 10px;
+}
+
+#computerScoreDisplay {
+    margin-right: 10px;
 }
 
 #tableDiv {
@@ -109,15 +153,20 @@ td, th {
     margin: 20px 0px;
 }
 
-.objectRevealed {
-    color: orangered;
-    font-weight: bold;
-    font-size: large;
+.choice {
+
+}
+
+.dataText {
+    font-size: small;
 }
 
 .gameOverDiv {
     flex-direction: column;
-    padding: 50px;
-    z-index: 1000;
-    background-color: lightblue;
+    max-width: 300px;
+    height: 265px;
+    padding: 40px;
+    z-index: 10;
+    position: absolute;
+    background-color: rgb(175, 175, 33);
 }

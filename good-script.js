@@ -2,6 +2,8 @@ let humanScore = 0;
 let computerScore = 0;
 let roundCount = 0;
 
+const header = document.querySelector("h2");
+const greeting = document.getElementById("greeting");
 const pleaseSelect = document.querySelector("h3");
 const rockButton = document.getElementById("rockButton");
 const paperButton = document.getElementById("paperButton");
@@ -10,6 +12,7 @@ const choiceDiv = document.getElementById("choiceDiv");
 const humanObject = document.getElementById("humanObject");
 const computerObject = document.getElementById("computerObject");
 const scoreDiv = document.getElementById("scoreDiv");
+const currentScore = document.getElementById("currentScore");
 const roundWinner = document.getElementById("roundWinner");
 const humanScoreDisplay = document.getElementById("humanScoreDisplay");
 const computerScoreDisplay = document.getElementById("computerScoreDisplay");
@@ -26,6 +29,7 @@ function playGame() {
     
     
     function playRound(humanSelection) {
+        greeting.textContent = "game in progress";
         roundCount++;
         const computerSelection = getComputerChoice();
         // console.log(humanSelection);
@@ -52,11 +56,11 @@ function displayChoices(humanChoice, computerChoice) {
     pleaseSelect.textContent = "OBJECTS WERE SELECTED";
     const displayHumanObject = humanObject.textContent = humanChoice;
     const displayComputerObject = computerObject.textContent = computerChoice;
-    humanObject.classList.add("objectRevealed");
-    computerObject.classList.add("objectRevealed");
+    // humanObject.classList.add("objectRevealed");
+    // computerObject.classList.add("objectRevealed");
 
-    setTimeout(displayHumanObject, 2000);
-    setTimeout(displayComputerObject, 2000);
+    setTimeout(displayHumanObject, 1000);
+    setTimeout(displayComputerObject, 4000);
 }
 
 function findRoundWinner(humanChoice, computerChoice) { 
@@ -105,6 +109,7 @@ function recordRoundHistory(theCount, humanChoice, computerChoice, thisRoundsWin
 
     roundArray.forEach(element => {
         const tableData = document.createElement("td");
+        tableData.classList.add("dataText")
         tableData.textContent = element; {
         tableRow.appendChild(tableData)
         }
@@ -125,6 +130,7 @@ function prepareForNextRound() {
 }
 
 function endGame() { 
+    currentScore.textContent = "final score:";
     const gameOverDiv = document.createElement("div");
     const gameOver = document.createElement("h1");
     const gameWinner = document.createElement("h3");
@@ -142,7 +148,7 @@ function endGame() {
     
     gameOverDiv.classList.add("gameOverDiv");
     // const header = document.querySelector("h2");
-    roundWinner.appendChild(gameOverDiv);
+    header.appendChild(gameOverDiv);
     gameOverDiv.append(gameOver, gameWinner, playAgainButton);
     
     playAgainButton.addEventListener("click", resetEverything);
@@ -155,14 +161,16 @@ function endGame() {
         console.log(finalRoundCount);
         humanScoreDisplay.textContent = "0";
         computerScoreDisplay.textContent = "0";
-        roundWinner.textContent = "welcome to a new game!";
+        greeting.textContent = "welcome to a new game!";
+        currentScore.textContent = "current score:";
+        roundWinner.textContent = "...awaiting the first selections..."
         pleaseSelect.textContent = "please select an object:";
 
         for (i = 0; i < finalRoundCount; i++) {
             const table = document.querySelector("table");
             table.removeChild(table.lastElementChild);
         }
-        roundWinner.removeChild(gameOverDiv);
+        header.removeChild(gameOverDiv);
         playGame();   
     }
 }

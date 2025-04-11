@@ -9,9 +9,9 @@
 </head>
 <body>
 
-    <h2>(O) [_] >8</h2>
+    <h2>rock.paper.scissors</h2>
     <!-- &#x1FAA8 &#x1F4C3 &#x2702  -->
-    <p id="roundWinner">welcome to a new game of rock, paper, scissors.</p> 
+    <p id="greeting">welcome to a new game!</p> 
     <p class="smallText">the first player to reach 5 points wins.</p>
     <h3>please select an object:</h3>
     <div id="buttonDiv">
@@ -21,25 +21,31 @@
     </div>  
     <div id="choiceDiv">
         <div id="humanChoiceDiv">
-            <p>the human's choice:</p>
-            <div id="humanObject">???</div>
+            <p class="choice">human selection:</p>
+            <h3 id="humanObject">???</h3>
         </div>
         <div id="computerChoiceDiv">
-            <p>the computer's choice:</p>
-            <div id="computerObject">???</div>
+            <p class="choice">computer selection:</p>
+            <h3 id="computerObject">???</h3>
         </div>
     </div>
+    <p id="roundWinner">...awaiting the first selections...</p> 
     <div id="scoreDiv">
-        <h3>current score</h3>
+        <h3 id="currentScore">current score:</h3>
         <div id="innerScoreDiv">
-            <p>human:</p>
-            <p id="humanScoreDisplay">0</p>
-            <p>computer:</p>
-            <p id="computerScoreDisplay">0</p>
+            <div id="humanScoreDiv">
+                <p>human</p>
+                <div id="humanScoreDisplay">0</div>
+            </div>
+            <div id="computerScoreDiv">
+                
+                <div id="computerScoreDisplay">0</div>
+                <p>computer</p>
+            </div>
         </div>
     </div>
     <div id="tableDiv">
-        <p class="smallText">round history:</p>
+        <p class="smallText">play-by-play documentation:</p>
         <table>
             <tr>
                 <th>#</th>
