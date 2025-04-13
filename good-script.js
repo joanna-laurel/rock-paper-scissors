@@ -26,13 +26,27 @@ playGame();
 function playGame() {
     function chooseRock() {playRound("rock")};
     function choosePaper() {playRound("paper")};
-    function chooseScissors() {playRound("scissors")};
+    function chooseScissors(){playRound("scissors")};
+    
     rockButton.addEventListener("click", chooseRock);
     paperButton.addEventListener("click", choosePaper);
     scissorsButton.addEventListener("click", chooseScissors);
     
+    // function buttonsOff(){
+    //     rockButton.removeEventListener("click", chooseRock);
+    //     paperButton.removeEventListener("click", choosePaper);
+    //     scissorsButton.removeEventListener("click", chooseScissors);
+    // }
+    // rockButton.addEventListener("click", chooseRock);
+    // paperButton.addEventListener("click", choosePaper);
+    // scissorsButton.addEventListener("click", chooseScissors);
+    
     
     function playRound(humanSelection) {
+        const invisibleDiv = document.createElement("div");
+        invisibleDiv.classList.add("invisibleDiv");
+        header.appendChild(invisibleDiv);
+
         roundCount++;
         // displayChoices(humanSelection, computerSelection);
         greeting.textContent = "game in progress";
@@ -43,6 +57,7 @@ function playGame() {
         function showRoundWinner() {displayRoundWinner(theRoundWinner)};
         function changeTheScore() {updateScore(theRoundWinner)};
         function addTheData() {recordRoundHistory(roundCount, humanSelection, computerSelection, theRoundWinner)};
+        function freeUpButtons() {header.removeChild(invisibleDiv)};
         
         const computerSelection = getComputerChoice();
         const theRoundWinner = findRoundWinner(humanSelection, computerSelection);
@@ -52,8 +67,8 @@ function playGame() {
         wait(3000).then(changeTheScore);
         wait(4000).then(addTheData);
         wait(5000).then(seeIfItsOverYet);
+        wait(5000).then(freeUpButtons);
         function seeIfItsOverYet() {
-        // console.log("I prepared for the next round");
             if ((humanScore == 5) || (computerScore == 5)) {
                 rockButton.removeEventListener("click", chooseRock);
                 paperButton.removeEventListener("click", choosePaper);
@@ -61,7 +76,6 @@ function playGame() {
                 endGame();
             } else {prepareForNextRound()};
         }
-        // wait(5000).then(prepareForNextRound);
     }
 }
 
@@ -73,36 +87,32 @@ function getComputerChoice() {
     else {return "scissors"}            
 }   
 
-function displayChoices(humanChoice, computerChoice) {
-    // pleaseSelect.textContent = "";
-    // // humanObject.textContent = humanChoice
-    // // computerObject.textContent = computerChoice
+// function displayChoices(humanChoice, computerChoice) {
+//     // pleaseSelect.textContent = "";
+//     // // humanObject.textContent = humanChoice
+//     // // computerObject.textContent = computerChoice
 
-    // wait(500).then(displayHumanObject);
-    // wait(1500).then(displayComputerObject);
-    // // wait(5000).then(console.log("hi"));
+//     // wait(500).then(displayHumanObject);
+//     // wait(1500).then(displayComputerObject);
+//     // // wait(5000).then(console.log("hi"));
    
-    // function displayHumanObject() {humanObject.textContent = humanChoice}; 
-    // function displayComputerObject() {computerObject.textContent = computerChoice};
+//     // function displayHumanObject() {humanObject.textContent = humanChoice}; 
+//     // function displayComputerObject() {computerObject.textContent = computerChoice};
 
-    // // setTimeout(displayHumanObject, 1000);
-    // setTimeout(displayComputerObject, 3000);    
-}
+//     // // setTimeout(displayHumanObject, 1000);
+//     // setTimeout(displayComputerObject, 3000);    
+// }
 
 function findRoundWinner(humanChoice, computerChoice) { 
     if (((humanChoice == "rock") && (computerChoice == "scissors")) || 
         ((humanChoice == "scissors") && (computerChoice == "paper")) ||
         ((humanChoice == "paper") && (computerChoice == "rock"))) {
-            // roundWinner.textContent = "round " + roundCount + ": the human is victorious.";
             return "human";
         } else if (humanChoice === computerChoice) { 
-            // roundWinner.textContent = "round " + roundCount + " is a tie!" 
             return "tie";
         } else {
-            // roundWinner.textContent = "the computer wins round " + roundCount + "."; 
             return "computer";
         }  
-        // wait(3000).then(displayWinner);  
 } 
 
 function displayRoundWinner(thisRoundsWinner) {
@@ -144,14 +154,10 @@ function recordRoundHistory(theCount, humanChoice, computerChoice, thisRoundsWin
 }
     
 function prepareForNextRound() {
-    // if ((humanScore == 5) || (computerScore == 5)) {
-    //     // rockButton.removeEventListener("click", chooseRock);
-    //     // paperButton.removeEventListener("click", choosePaper);
-    //     // scissorsButton.removeEventListener("click", chooseScissors);
-    //     endGame()};
     humanObject.textContent = "?"; 
     computerObject.textContent = "?";
-    pleaseSelect.textContent = "please select another object."
+   
+    pleaseSelect.textContent = "please select another object:"
     roundWinner.textContent = "...";
 }
 
@@ -174,15 +180,11 @@ function endGame() {
     }
     
     gameOverDiv.classList.add("gameOverDiv");
-    // const header = document.querySelector("h2");
     header.appendChild(gameOverDiv);
     gameOverDiv.append(gameOver, gameWinner, playAgainButton);
-    
     playAgainButton.addEventListener("click", resetEverything);
         
     function resetEverything() {
-        // console.log("i'm resetting stuff");
-        
         humanScore = 0;
         computerScore = 0;
         let finalRoundCount = roundCount;
@@ -202,8 +204,7 @@ function endGame() {
             tableBody.removeChild(tableBody.lastElementChild);
         }
         header.removeChild(gameOverDiv);
-        
-        // playGame();   
+  
     } playGame(); 
 }
    

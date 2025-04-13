@@ -3,17 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rock, Paper, Scissors</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="styles.css">
     <script src="good-script.js" defer></script>
+    <title>Rock, Paper, Scissors</title>
 </head>
 <body>
 
-    <h2>rock.paper.scissors</h2>
-    <!-- &#x1FAA8 &#x1F4C3 &#x2702  -->
+    <h2>rock paper scissors</h2>
     <p id="greeting">welcome to a new game!</p> 
     <p class="smallText">the first player to reach 5 points wins.</p>
-    <h3>please select an object:</h3>
+    <h3 id="pleaseSelect">please select an object:</h3>
     <div id="buttonDiv">
         <button id="rockButton">ROCK</button>
         <button id="paperButton">PAPER</button>
@@ -21,38 +20,41 @@
     </div>  
     <div id="choiceDiv">
         <div id="humanChoiceDiv">
-            <p class="choice">human selection:</p>
+            <p class="choice">human selection</p>
             <h3 id="humanObject">???</h3>
         </div>
         <div id="computerChoiceDiv">
-            <p class="choice">computer selection:</p>
+            <p class="choice">robot selection</p>
             <h3 id="computerObject">???</h3>
         </div>
     </div>
     <p id="roundWinner">...awaiting the first selections...</p> 
     <div id="scoreDiv">
-        <h3 id="currentScore">current score:</h3>
+        <h3 id="currentScore">current score</h3>
         <div id="innerScoreDiv">
             <div id="humanScoreDiv">
                 <p>human</p>
                 <div id="humanScoreDisplay">0</div>
             </div>
             <div id="computerScoreDiv">
-                
                 <div id="computerScoreDisplay">0</div>
-                <p>computer</p>
+                <p>robot</p>
             </div>
         </div>
     </div>
     <div id="tableDiv">
-        <p class="smallText">play-by-play documentation:</p>
+        <p class="smallText">round-by-round documentation</p>
         <table>
-            <tr>
-                <th>#</th>
-                <th>human</th>
-                <th>computer</th>
-                <th>winner</th>
-            </tr>
+            <thead>
+                <tr id="headerRow">
+                    <th>#</th>
+                    <th>human</th>
+                    <th>robot</th>
+                    <th>winner</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
         </table>
     </div>
 
