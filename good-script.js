@@ -26,21 +26,11 @@ playGame();
 function playGame() {
     function chooseRock() {playRound("rock")};
     function choosePaper() {playRound("paper")};
-    function chooseScissors(){playRound("scissors")};
+    function chooseScissors() {playRound("scissors")};
     
     rockButton.addEventListener("click", chooseRock);
     paperButton.addEventListener("click", choosePaper);
     scissorsButton.addEventListener("click", chooseScissors);
-    
-    // function buttonsOff(){
-    //     rockButton.removeEventListener("click", chooseRock);
-    //     paperButton.removeEventListener("click", choosePaper);
-    //     scissorsButton.removeEventListener("click", chooseScissors);
-    // }
-    // rockButton.addEventListener("click", chooseRock);
-    // paperButton.addEventListener("click", choosePaper);
-    // scissorsButton.addEventListener("click", chooseScissors);
-    
     
     function playRound(humanSelection) {
         const invisibleDiv = document.createElement("div");
@@ -48,10 +38,10 @@ function playGame() {
         header.appendChild(invisibleDiv);
 
         roundCount++;
-        // displayChoices(humanSelection, computerSelection);
         greeting.textContent = "game in progress";
         pleaseSelect.textContent = "";
         roundWinner.textContent = "...";
+
         function displayHumanObject() {humanObject.textContent = humanSelection}; 
         function displayComputerObject() {computerObject.textContent = computerSelection};
         function showRoundWinner() {displayRoundWinner(theRoundWinner)};
@@ -67,7 +57,8 @@ function playGame() {
         wait(3000).then(changeTheScore);
         wait(4000).then(addTheData);
         wait(5000).then(seeIfItsOverYet);
-        wait(5000).then(freeUpButtons);
+        wait(5010).then(freeUpButtons);
+
         function seeIfItsOverYet() {
             if ((humanScore == 5) || (computerScore == 5)) {
                 rockButton.removeEventListener("click", chooseRock);
@@ -87,22 +78,6 @@ function getComputerChoice() {
     else {return "scissors"}            
 }   
 
-// function displayChoices(humanChoice, computerChoice) {
-//     // pleaseSelect.textContent = "";
-//     // // humanObject.textContent = humanChoice
-//     // // computerObject.textContent = computerChoice
-
-//     // wait(500).then(displayHumanObject);
-//     // wait(1500).then(displayComputerObject);
-//     // // wait(5000).then(console.log("hi"));
-   
-//     // function displayHumanObject() {humanObject.textContent = humanChoice}; 
-//     // function displayComputerObject() {computerObject.textContent = computerChoice};
-
-//     // // setTimeout(displayHumanObject, 1000);
-//     // setTimeout(displayComputerObject, 3000);    
-// }
-
 function findRoundWinner(humanChoice, computerChoice) { 
     if (((humanChoice == "rock") && (computerChoice == "scissors")) || 
         ((humanChoice == "scissors") && (computerChoice == "paper")) ||
@@ -111,8 +86,7 @@ function findRoundWinner(humanChoice, computerChoice) {
         } else if (humanChoice === computerChoice) { 
             return "tie";
         } else {
-            return "computer";
-        }  
+            return "computer";}  
 } 
 
 function displayRoundWinner(thisRoundsWinner) {
@@ -156,7 +130,6 @@ function recordRoundHistory(theCount, humanChoice, computerChoice, thisRoundsWin
 function prepareForNextRound() {
     humanObject.textContent = "?"; 
     computerObject.textContent = "?";
-   
     pleaseSelect.textContent = "please select another object:"
     roundWinner.textContent = "...";
 }
@@ -178,7 +151,7 @@ function endGame() {
         gameWinner.textContent = "The robot has won by " 
             + (computerScore - humanScore) + ".";
     }
-    
+
     gameOverDiv.classList.add("gameOverDiv");
     header.appendChild(gameOverDiv);
     gameOverDiv.append(gameOver, gameWinner, playAgainButton);
@@ -203,6 +176,7 @@ function endGame() {
             const tableBody = document.querySelector("tbody");
             tableBody.removeChild(tableBody.lastElementChild);
         }
+        
         header.removeChild(gameOverDiv);
   
     } playGame(); 
