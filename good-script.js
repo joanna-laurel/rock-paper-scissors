@@ -18,19 +18,12 @@ const humanScoreDisplay = document.getElementById("humanScoreDisplay");
 const computerScoreDisplay = document.getElementById("computerScoreDisplay");
 const tableBody = document.querySelector("tbody");
 
-// const wait = (ms) => new Promise((resolve) =>
-//     setTimeout(resolve, ms))
-
-// function chooseRock() {playRound("rock")};
-// function choosePaper() {playRound("paper")};
-// function chooseScissors() {playRound("scissors")};
+const wait = (ms) => new Promise((resolve) =>
+    setTimeout(resolve, ms))
 
 playGame();
 
 function playGame() {
-    // let rockButton = document.getElementById("rockButton");
-    // let paperButton = document.getElementById("paperButton");
-    // let scissorsButton = document.getElementById("scissorsButton");
     function chooseRock() {playRound("rock")};
     function choosePaper() {playRound("paper")};
     function chooseScissors() {playRound("scissors")};
@@ -40,29 +33,35 @@ function playGame() {
     
     
     function playRound(humanSelection) {
-        greeting.textContent = "game in progress";
         roundCount++;
-        console.log("I got the human selection");
-        const computerSelection = getComputerChoice();
-        console.log("I got the robot selection");
-        console.log(humanSelection);
-        console.log(computerSelection);
+        // displayChoices(humanSelection, computerSelection);
+        greeting.textContent = "game in progress";
+        pleaseSelect.textContent = "";
+        roundWinner.textContent = "...";
+        function displayHumanObject() {humanObject.textContent = humanSelection}; 
+        function displayComputerObject() {computerObject.textContent = computerSelection};
+        function showRoundWinner() {displayRoundWinner(theRoundWinner)};
+        function changeTheScore() {updateScore(theRoundWinner)};
+        function addTheData() {recordRoundHistory(roundCount, humanSelection, computerSelection, theRoundWinner)};
         
-        displayChoices(humanSelection, computerSelection);
-        console.log("I displayed the two selections");
+        const computerSelection = getComputerChoice();
         const theRoundWinner = findRoundWinner(humanSelection, computerSelection);
-        console.log("I found the round winner");
-        updateScore(theRoundWinner);
-        console.log("I updated the score");
-        recordRoundHistory(roundCount, humanSelection, computerSelection, theRoundWinner);
-        console.log("I recorded the round in the table");
-        prepareForNextRound();
-        console.log("I prepared for the next round");
-        if ((humanScore == 5) || (computerScore == 5)) {
-            rockButton.removeEventListener("click", chooseRock);
-            paperButton.removeEventListener("click", choosePaper);
-            scissorsButton.removeEventListener("click", chooseScissors);
-            endGame()};
+        wait(500).then(displayHumanObject);
+        wait(1500).then(displayComputerObject);
+        wait(2500).then(showRoundWinner);
+        wait(3000).then(changeTheScore);
+        wait(4000).then(addTheData);
+        wait(5000).then(seeIfItsOverYet);
+        function seeIfItsOverYet() {
+        // console.log("I prepared for the next round");
+            if ((humanScore == 5) || (computerScore == 5)) {
+                rockButton.removeEventListener("click", chooseRock);
+                paperButton.removeEventListener("click", choosePaper);
+                scissorsButton.removeEventListener("click", chooseScissors);
+                endGame();
+            } else {prepareForNextRound()};
+        }
+        // wait(5000).then(prepareForNextRound);
     }
 }
 
@@ -75,16 +74,13 @@ function getComputerChoice() {
 }   
 
 function displayChoices(humanChoice, computerChoice) {
-    pleaseSelect.textContent = "";
-    humanObject.textContent = humanChoice
-    computerObject.textContent = computerChoice
+    // pleaseSelect.textContent = "";
+    // // humanObject.textContent = humanChoice
+    // // computerObject.textContent = computerChoice
 
-    // const wait = (ms) => new Promise((resolve) =>
-    //     setTimeout(resolve, ms))
-
-    // wait(1000).then(displayHumanObject);
+    // wait(500).then(displayHumanObject);
     // wait(1500).then(displayComputerObject);
-    // wait(5000).then(console.log("hi"));
+    // // wait(5000).then(console.log("hi"));
    
     // function displayHumanObject() {humanObject.textContent = humanChoice}; 
     // function displayComputerObject() {computerObject.textContent = computerChoice};
@@ -94,28 +90,28 @@ function displayChoices(humanChoice, computerChoice) {
 }
 
 function findRoundWinner(humanChoice, computerChoice) { 
-
     if (((humanChoice == "rock") && (computerChoice == "scissors")) || 
         ((humanChoice == "scissors") && (computerChoice == "paper")) ||
         ((humanChoice == "paper") && (computerChoice == "rock"))) {
-            roundWinner.textContent = "round " + roundCount + ": the human is victorious.";
+            // roundWinner.textContent = "round " + roundCount + ": the human is victorious.";
             return "human";
-            // humanScore++;
-            // humanScoreDisplay.textContent = humanScore;
-            // computerScoreDisplay.textContent = computerScore;
-            // return humanScore;
         } else if (humanChoice === computerChoice) { 
-            roundWinner.textContent = "round " + roundCount + " is a tie!" 
+            // roundWinner.textContent = "round " + roundCount + " is a tie!" 
             return "tie";
         } else {
-            roundWinner.textContent = "the computer wins round " + roundCount + "."; 
+            // roundWinner.textContent = "the computer wins round " + roundCount + "."; 
             return "computer";
-            // computerScore++;
-            // humanScoreDisplay.textContent = humanScore;
-            // computerScoreDisplay.textContent = computerScore;
-            // return computerScore; 
-        }    
+        }  
+        // wait(3000).then(displayWinner);  
 } 
+
+function displayRoundWinner(thisRoundsWinner) {
+    if (thisRoundsWinner == "human") {
+        roundWinner.textContent = "The human wins round " + roundCount + ".";
+    } else if (thisRoundsWinner == "computer") {
+        roundWinner.textContent = "The robot wins round " + roundCount + ".";
+    } else {roundWinner.textContent = "It's a tie!"}
+}
 
 function updateScore(thisRoundsWinner) {
     if (thisRoundsWinner == "human") {
@@ -148,16 +144,15 @@ function recordRoundHistory(theCount, humanChoice, computerChoice, thisRoundsWin
 }
     
 function prepareForNextRound() {
-    // function resetChoices() {
-        humanObject.textContent = "???"; 
-        computerObject.textContent = "???"
-    // }
-    // function reprompt() {
-        pleaseSelect.textContent = "please select another object."
-    // }
-    // setTimeout(resetChoices, 3000);
-    // setTimeout(reprompt, 4000);
-
+    // if ((humanScore == 5) || (computerScore == 5)) {
+    //     // rockButton.removeEventListener("click", chooseRock);
+    //     // paperButton.removeEventListener("click", choosePaper);
+    //     // scissorsButton.removeEventListener("click", chooseScissors);
+    //     endGame()};
+    humanObject.textContent = "?"; 
+    computerObject.textContent = "?";
+    pleaseSelect.textContent = "please select another object."
+    roundWinner.textContent = "...";
 }
 
 function endGame() { 
@@ -195,6 +190,8 @@ function endGame() {
         console.log(finalRoundCount);
         humanScoreDisplay.textContent = "0";
         computerScoreDisplay.textContent = "0";
+        humanObject.textContent = "?";
+        computerObject.textContent = "?";
         greeting.textContent = "welcome to a new game!";
         currentScore.textContent = "current score:";
         roundWinner.textContent = "...awaiting the first selections..."
