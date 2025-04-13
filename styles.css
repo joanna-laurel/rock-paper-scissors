@@ -104,7 +104,7 @@ td, th {
 }
 
 #buttonDiv {
-    background-color: rgb(187, 187, 53);
+    /* background-color: lightsalmon; */
     /* background-color: rgb(175, 175, 33); */
 }
 
@@ -156,7 +156,6 @@ td, th {
 }
 
 #roundWinner {
-    color: rgb(155, 155, 9);
     font-weight: bolder;
     margin-bottom: 10px;
 }

@@ -86,13 +86,13 @@ function findRoundWinner(humanChoice, computerChoice) {
         } else if (humanChoice === computerChoice) { 
             return "tie";
         } else {
-            return "computer";}  
+            return "robot";}  
 } 
 
 function displayRoundWinner(thisRoundsWinner) {
     if (thisRoundsWinner == "human") {
         roundWinner.textContent = "The human wins round " + roundCount + ".";
-    } else if (thisRoundsWinner == "computer") {
+    } else if (thisRoundsWinner == "robot") {
         roundWinner.textContent = "The robot wins round " + roundCount + ".";
     } else {roundWinner.textContent = "It's a tie!"}
 }
@@ -103,7 +103,7 @@ function updateScore(thisRoundsWinner) {
         humanScoreDisplay.textContent = humanScore;
         computerScoreDisplay.textContent = computerScore;
         return humanScore;
-    } else if (thisRoundsWinner == "computer") {
+    } else if (thisRoundsWinner == "robot") {
         computerScore++;
         humanScoreDisplay.textContent = humanScore;
         computerScoreDisplay.textContent = computerScore;
@@ -146,9 +146,9 @@ function endGame() {
     playAgainButton.classList.add("playAgainButton");
 
     if (humanScore > computerScore) {
-        gameWinner.textContent = "The lucky human has won the game.";
+        gameWinner.textContent = "The lucky human won the game.";
     } else {
-        gameWinner.textContent = "The robot has won by " 
+        gameWinner.textContent = "The robot won by " 
             + (computerScore - humanScore) + ".";
     }
 
