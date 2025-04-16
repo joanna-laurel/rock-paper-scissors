@@ -138,7 +138,7 @@ function endGame() {
     currentScore.textContent = "final score:";
     const gameOverDiv = document.createElement("div");
     const gameOver = document.createElement("h1");
-    const gameWinner = document.createElement("h3");
+    const gameWinner = document.createElement("h4");
     const playAgainButton = document.createElement("button");
     
     gameOver.textContent = "GAME OVER";

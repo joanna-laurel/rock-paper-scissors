@@ -5,34 +5,54 @@ body {
     box-sizing: border-box;
     margin: 0;
     text-align: center;
+    align-items: center;
+    color: antiquewhite;
+    background-color: rgb(6, 6, 17);
 }
 
 /*elements*/
 
 h1 {
-    color: white;
+    color: rgb(114, 160, 158);
+    /* color: orangered; */
     margin-bottom: -15px;
 }
 
 h2 {
     margin: 0px 0px 20px 0px;
-    background-color: rgb(245, 244, 196);
-    padding: 30px 0px 10px;
-    border-bottom: solid 1px rgb(187, 187, 53);
+    color: rgb(114, 160, 158);
+    color: antiquewhite;
+    font-size:xx-large;
+    /* background-color: rgb(245, 244, 196); */
+    /* background-color: rgb(185, 188, 226); */
+    /* background-color: aliceblue; */
+    padding: 30px 50px 10px;
+    /* border-bottom: solid 1px rgb(187, 187, 53); */
+}
+
+h4 {
+    font-size: large;
+    margin: 20px 0px 30px 0px;
+    /* color: orangered;
+    color: rgb(114, 160, 158); */
 }
 
 button {
     margin: 10px 10px;
     padding: 5px 20px;
-    background-color: rgb(114, 160, 158);
-    color: white;
+    /* background-color: rgb(114, 160, 158); */
+    background-color: orangered;
+    /* background-color: rgb(49, 70, 139); */
+    color: antiquewhite;
     font-weight: bold;
     border: solid 1px rgb(24, 43, 42);
     border-radius: 4px;
 }
 
 button:hover {
-    background-color: orangered;
+    /* background-color: orangered; */
+    background-color: antiquewhite;
+    color: rgb(15, 15, 48);
 }
 
 p {
@@ -49,12 +69,15 @@ table {
     table-layout: fixed;
     width: 360px;
     border-collapse: collapse;
-    background-color: rgb(245, 244, 196);
+    /* background-color: rgb(245, 244, 196); */
+    background-color: antiquewhite;
+    color: rgb(15, 15, 48);
     border: solid 1px rgb(187, 187, 53);
     margin-top: -10px;
     margin-bottom: 20px;
     padding-bottom: 10px;
 }
+
 
 thead th:nth-child(1) {
     width: 40px;
@@ -71,6 +94,7 @@ thead th:nth-child(3) {
 
 thead th:nth-child(4) {
     width: 80px;
+    padding-right: 0px;
 }
 
 tr {
@@ -95,17 +119,23 @@ td, th {
 /*IDs in order of appearance*/
 
 #greeting {
-    margin: 20px 0px -5px 0px
+    margin: 20px 0px -10px 0px
 }
 
 #pleaseSelect {
     height: 30px;
     margin-bottom: 0px;
+    margin-top: 40px;
+    color: rgb(114, 160, 158);
 }
 
 #buttonDiv {
     /* background-color: lightsalmon; */
     /* background-color: rgb(175, 175, 33); */
+}
+
+#buttonDiv {
+    /* background-color:rgb(36, 36, 175); */
 }
 
 #humanChoiceDiv, #computerChoiceDiv {
@@ -124,11 +154,14 @@ td, th {
     flex-direction: column;
     align-items: center;
     background-color: rgb(114, 160, 158);
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    width: 280px;
+    color:rgb(15, 15, 48);
 }
 
 #innerScoreDiv {
     margin: -10px 0px 20px 0px;
+    color:rgb(15, 15, 48);
 }
 
 #humanScoreDiv, #computerScoreDiv {
@@ -196,15 +229,21 @@ td, th {
     justify-content: center;
     text-align: center;
     margin-top: 10px;
-    height: 380px;
+    height: 390px;
+    /* max-width: 440px; */
     padding: 0px 40px;
     z-index: 10;
     position: absolute;
     right: 0;
     left: 0;
-    background-color: rgb(175, 175, 33);
+    /* background-color: orangered; */
+    background-color: rgb(6, 6, 17);
+    /* background-color: rgb(95, 95, 25); */
 }
 
 .playAgainButton {
-    background-color: orangered;
+    /* background-color: rgb(114, 160, 158);
+    color: rgb(15, 15, 48); */
+    height: 30px;
+    width: 140px;
 }
